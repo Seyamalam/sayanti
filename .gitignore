@@ -1,3 +1,13 @@
+# Data files (large CSVs)
+fraudTest.csv
+*.csv.gz
+
+# Results and models
+results/*.png
+
+# Telemetry
+telemetry-id
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

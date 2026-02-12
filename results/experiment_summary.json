@@ -1,0 +1,32 @@
+{
+  "dataset": {
+    "n_samples": 555719,
+    "n_features": 26,
+    "fraud_rate": 0.0038598644278853163,
+    "imbalance_ratio": 258.07645687645686
+  },
+  "best_model": "random_forest",
+  "best_auc_roc": 0.9947491905778202,
+  "cv_auc_roc_mean": 0.9977405583263639,
+  "cv_auc_roc_std": 0.000381079455234798,
+  "xai_quality": {
+    "fidelity": 0.7775989818297642,
+    "stability": 0.8545454545454547
+  },
+  "ic_shap_weights": {
+    "w_legit": 0.003860465347964912,
+    "w_fraud": 0.9961395346520351
+  },
+  "top_10_features": [
+    "amt",
+    "job_enc",
+    "merchant_enc",
+    "hour_cos",
+    "hour",
+    "cat_grocery_pos",
+    "age",
+    "cat_shopping_net",
+    "cat_food_dining",
+    "city_pop_log"
+  ]
+}
