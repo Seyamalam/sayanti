@@ -1,2 +1,2 @@
-fidelity,stability,comprehensibility
-0.7775989818297642,0.8545454545454547,27
+fidelity,stability,comprehensibility,fidelity_met,stability_met,ic_shap_fidelity,ic_shap_stability
+0.5658845449771661,0.9272727272727274,16,False,True,0.565884548010755,0.8545454545454547
