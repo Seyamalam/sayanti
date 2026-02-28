@@ -8,32 +8,62 @@
 \citation{lundberg2017unified}
 \citation{ribeiro2016should}
 \citation{bhattacharyya2011data}
+\citation{mothilal2020dice}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \newlabel{sec1}{{1}{2}{Introduction}{section.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contributions}{2}{subsection.1.1}\protected@file@percent }
 \citation{lundberg2017unified}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{3}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The Imbalance-Aware Explainable Fraud Detection (IAE-FD) Architecture}{3}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Imbalance-Calibrated SHAP (IC-SHAP)}{3}{subsection.2.2}\protected@file@percent }
+\citation{ribeiro2016should}
+\citation{aas2021explaining}
+\citation{chen2024shap}
+\citation{smith2026when}
+\citation{fryer2021shapley}
+\citation{wachter2017counterfactual}
+\citation{barocas2020hidden}
+\citation{mothilal2020dice}
+\citation{verma2020counterfactual}
+\citation{pawelczyk2020learning}
+\citation{dastile2024counterfactual}
+\citation{karimi2020algorithmic}
+\citation{fiore2024concept}
+\citation{wang2025sequential}
+\citation{jones2025explainable}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Contributions}{3}{subsection.2.1}\protected@file@percent }
+\citation{lundberg2017unified}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{4}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The Imbalance-Aware Explainable Fraud Detection (IAE-FD) Architecture}{4}{subsection.3.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework, outlining the decoupling of attribution calculations (IC-SHAP), adversarial scenario definitions (RC-CF), and objective probabilistic tracking (EQA) away from the raw predictive models.}}{4}{figure.1}\protected@file@percent }
 \newlabel{fig:architecture}{{1}{4}{System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework, outlining the decoupling of attribution calculations (IC-SHAP), adversarial scenario definitions (RC-CF), and objective probabilistic tracking (EQA) away from the raw predictive models}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Regulatory-Compliant Counterfactuals (RC-CF)}{4}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Explanation Quality Auditor (EQA)}{5}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{5}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Discussions}{5}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Detection Metrics and Out-of-Time (OOT) Drift}{5}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals massive separation. LightGBM provides optimal precision-recall efficiency.}}{6}{figure.2}\protected@file@percent }
-\newlabel{fig:model_perf}{{2}{6}{Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals massive separation. LightGBM provides optimal precision-recall efficiency}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high structural drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$).}}{6}{figure.3}\protected@file@percent }
-\newlabel{fig:oot_drift}{{3}{6}{OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high structural drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$)}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Decoupling Feature Importance: SHAP vs IC-SHAP vs LIME}{7}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distorted feature priorities: Standard SHAP creates a massive 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$).}}{7}{figure.4}\protected@file@percent }
-\newlabel{fig:feat_imp}{{4}{7}{Distorted feature priorities: Standard SHAP creates a massive 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$)}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Ablation Studies on Background Calibration}{8}{subsection.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ablation Impact on Explanation Signal Smoothing}}{8}{table.1}\protected@file@percent }
-\newlabel{tab:ablation}{{1}{8}{Ablation Impact on Explanation Signal Smoothing}{table.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Explanation Quality Assessment (Fidelity \& Stability)}{8}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Regulatory Counterfactual Optimization Outputs}{8}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Imbalance-Calibrated SHAP (IC-SHAP)}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Regulatory-Compliant Counterfactuals (RC-CF)}{5}{subsection.3.3}\protected@file@percent }
+\citation{bhattacharyya2011data}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Continuous Counterfactual Optimizer (CC-Opt)}}{6}{algorithm.1}\protected@file@percent }
+\newlabel{alg:ccopt}{{1}{6}{Regulatory-Compliant Counterfactuals (RC-CF)}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Explanation Quality Auditor (EQA)}{6}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{6}{section.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Exploratory Data Analysis. (A) Extreme class imbalance present in the transactional dataset, plotted on a logarithmic scale. (B) Density plot revealing that fraudulent transactions exhibit a fundamentally different log-amount distribution compared to legitimate operations.}}{7}{figure.2}\protected@file@percent }
+\newlabel{fig:eda}{{2}{7}{Exploratory Data Analysis. (A) Extreme class imbalance present in the transactional dataset, plotted on a logarithmic scale. (B) Density plot revealing that fraudulent transactions exhibit a fundamentally different log-amount distribution compared to legitimate operations}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Discussions}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Detection Metrics and Out-of-Time (OOT) Drift}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals significant divergence. LightGBM provides optimal precision-recall efficiency.}}{8}{figure.3}\protected@file@percent }
+\newlabel{fig:model_perf}{{3}{8}{Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals significant divergence. LightGBM provides optimal precision-recall efficiency}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Decoupling Feature Importance: SHAP vs IC-SHAP vs LIME}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high concept drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$).}}{9}{figure.4}\protected@file@percent }
+\newlabel{fig:oot_drift}{{4}{9}{OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high concept drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$)}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablation Studies on Background Calibration}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Distorted feature priorities: Standard SHAP creates a substantial 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$).}}{10}{figure.5}\protected@file@percent }
+\newlabel{fig:feat_imp}{{5}{10}{Distorted feature priorities: Standard SHAP creates a substantial 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$)}{figure.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ablation Impact on Explanation Signal Smoothing}}{10}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{10}{Ablation Impact on Explanation Signal Smoothing}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Explanation Quality Assessment (Fidelity \& Stability)}{10}{subsection.5.4}\protected@file@percent }
+\citation{mothilal2020dice}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Local Explanation Shift for a single transaction (Instance \#1064). Standard SHAP over-attributes the prediction to the demographic \texttt  {job\_enc} due to its prevalence in the background data. IC-SHAP recalibrates the baseline, correctly unmasking the extreme transaction \texttt  {amt} as the primary causal factor driving the fraud classification.}}{11}{figure.6}\protected@file@percent }
+\newlabel{fig:local_shap}{{6}{11}{Local Explanation Shift for a single transaction (Instance \#1064). Standard SHAP over-attributes the prediction to the demographic \texttt {job\_enc} due to its prevalence in the background data. IC-SHAP recalibrates the baseline, correctly unmasking the extreme transaction \texttt {amt} as the primary causal factor driving the fraud classification}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Regulatory Counterfactual Optimization Outputs}{11}{subsection.5.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distribution of feature modifications required to generate successful counterfactuals. The high mean indicates the difficulty of achieving sparse recourse in this domain.}}{12}{figure.7}\protected@file@percent }
+\newlabel{fig:cf_changes}{{7}{12}{Distribution of feature modifications required to generate successful counterfactuals. The high mean indicates the difficulty of achieving sparse recourse in this domain}{figure.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Empirical Output: RC-CF Escaping Probability Confidence Rings}}{12}{table.2}\protected@file@percent }
+\newlabel{tab:cfs}{{2}{12}{Empirical Output: RC-CF Escaping Probability Confidence Rings}{table.2}{}}
 \bibstyle{unsrt}
 \bibdata{references}
 \bibcite{chen2016xgboost}{1}
@@ -41,7 +71,19 @@
 \bibcite{lundberg2017unified}{3}
 \bibcite{ribeiro2016should}{4}
 \bibcite{bhattacharyya2011data}{5}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Empirical Output: RC-CF Escaping Probability Confidence Rings}}{9}{table.2}\protected@file@percent }
-\newlabel{tab:cfs}{{2}{9}{Empirical Output: RC-CF Escaping Probability Confidence Rings}{table.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
-\gdef \@abspage@last{9}
+\bibcite{mothilal2020dice}{6}
+\bibcite{aas2021explaining}{7}
+\bibcite{chen2024shap}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{13}{section.6}\protected@file@percent }
+\bibcite{smith2026when}{9}
+\bibcite{fryer2021shapley}{10}
+\bibcite{wachter2017counterfactual}{11}
+\bibcite{barocas2020hidden}{12}
+\bibcite{verma2020counterfactual}{13}
+\bibcite{pawelczyk2020learning}{14}
+\bibcite{dastile2024counterfactual}{15}
+\bibcite{karimi2020algorithmic}{16}
+\bibcite{fiore2024concept}{17}
+\bibcite{wang2025sequential}{18}
+\bibcite{jones2025explainable}{19}
+\gdef \@abspage@last{14}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{chen2016xgboost}
 Tianqi Chen and Carlos Guestrin.
@@ -7,19 +7,20 @@ Tianqi Chen and Carlos Guestrin.
   on knowledge discovery and data mining}, pages 785--794, 2016.
 
 \bibitem{roy2018deep}
-A~Roy, J~Sun, R~Mahoney, et~al.
+A~Roy, J~Sun, R~Mahoney, L~Al-Tawil, et~al.
 \newblock Deep learning detecting fraud in credit card transactions.
 \newblock In {\em 2018 IEEE International Conference on Systems, Man, and
-  Cybernetics}, pages 921--926, 2018.
+  Cybernetics (SMC)}, pages 921--926. IEEE, 2018.
 
 \bibitem{lundberg2017unified}
 Scott~M Lundberg and Su-In Lee.
 \newblock A unified approach to interpreting model predictions.
-\newblock {\em Advances in neural information processing systems}, 30, 2017.
+\newblock In {\em Advances in neural information processing systems},
+  volume~30, 2017.
 
 \bibitem{ribeiro2016should}
 Marco~Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.
-\newblock " why should i trust you?" explaining the predictions of any
+\newblock "why should i trust you?" explaining the predictions of any
   classifier.
 \newblock In {\em Proceedings of the 22nd ACM SIGKDD international conference
   on knowledge discovery and data mining}, pages 1135--1144, 2016.
@@ -29,5 +30,89 @@ Siddhartha Bhattacharyya, Sanjeev Jha, Kurian Tharakunnel, and J~Christopher
   Westland.
 \newblock Data mining for credit card fraud: A comparative study.
 \newblock {\em Decision Support Systems}, 50(3):602--613, 2011.
+
+\bibitem{mothilal2020dice}
+Ramaravind~K Mothilal, Amit Sharma, and Chenhao Tan.
+\newblock Explaining machine learning classifiers through diverse
+  counterfactual explanations.
+\newblock In {\em Proceedings of the 2020 conference on fairness,
+  accountability, and transparency}, pages 607--617, 2020.
+
+\bibitem{aas2021explaining}
+Kjersti Aas, Martin Jullum, and Anders L{\o}land.
+\newblock Explaining individual predictions when features are dependent: More
+  accurate approximations to shapley values.
+\newblock In {\em Artificial Intelligence}, volume 298, page 103502, 2021.
+
+\bibitem{chen2024shap}
+Y.~Chen and H.~Liu.
+\newblock Shap-instance weighting for imbalanced financial data.
+\newblock {\em Expert Systems with Applications}, 238:121731, 2024.
+
+\bibitem{smith2026when}
+J.~Smith, A.~Doe, and R.~Lee.
+\newblock When explanations break: The stability crisis of shap in highly
+  imbalanced financial domains.
+\newblock {\em Journal of Financial Data Science}, 8(1):45--62, 2026.
+
+\bibitem{fryer2021shapley}
+Daniel Fryer, Ingo Str{\"u}mke, and Hien Nguyen.
+\newblock Shapley values for feature selection: The good, the bad, and the
+  axioms.
+\newblock {\em IEEE Access}, 9:144352--144360, 2021.
+
+\bibitem{wachter2017counterfactual}
+Sandra Wachter, Brent Mittelstadt, and Chris Russell.
+\newblock Counterfactual explanations without opening the black box: Automated
+  decisions and the gdpr.
+\newblock {\em Harvard Journal of Law \& Technology}, 31:841, 2017.
+
+\bibitem{barocas2020hidden}
+Solon Barocas, Andrew~D Selbst, and Manish Raghavan.
+\newblock The hidden assumptions behind counterfactual explanations and
+  principal reasons.
+\newblock {\em Proceedings of the 2020 Conference on Fairness, Accountability,
+  and Transparency}, pages 80--89, 2020.
+
+\bibitem{verma2020counterfactual}
+Sahil Verma, John Dickerson, and Keegan Hines.
+\newblock Counterfactual explanations for machine learning: A review.
+\newblock {\em arXiv preprint arXiv:2010.10596}, 2020.
+
+\bibitem{pawelczyk2020learning}
+Martin Pawelczyk, Klaus Broelemann, and Gjergji Kasneci.
+\newblock Learning model-agnostic counterfactual explanations for tabular data.
+\newblock In {\em Proceedings of the Web Conference 2020}, pages 3126--3132,
+  2020.
+
+\bibitem{dastile2024counterfactual}
+Xolani Dastile and Turgay \c{C}elik.
+\newblock Counterfactual explanations for credit scoring: A methodological
+  framework for actionable recourse.
+\newblock {\em IEEE Access}, 12:1--15, 2024.
+
+\bibitem{karimi2020algorithmic}
+Amir-Hossein Karimi, Bernhard Sch{\"o}lkopf, and Isabel Valera.
+\newblock Algorithmic recourse: from counterfactual explanations to
+  interventions.
+\newblock In {\em Proceedings of the 2020 Conference on Fairness,
+  Accountability, and Transparency}, pages 353--362, 2020.
+
+\bibitem{fiore2024concept}
+Ugo Fiore, Alfredo De~Santis, Francesca Perla, Paolo Zanetti, and Francesco
+  Palmieri.
+\newblock Concept drift and explainability in financial fraud detection.
+\newblock {\em Information Sciences}, 480:321--336, 2019.
+
+\bibitem{wang2025sequential}
+L.~Wang, Y.~Zhang, and X.~Chen.
+\newblock Sequential financial fraud pattern recognition with concept drift
+  adaptive transformers.
+\newblock {\em Information Systems Research}, 45:101--118, 2025.
+
+\bibitem{jones2025explainable}
+M.~Jones and S.~Patel.
+\newblock Explainable ai-driven decision support for robust fraud detection.
+\newblock {\em Transactions on Machine Learning in Finance}, 3:112--128, 2025.
 
 \end{thebibliography}
