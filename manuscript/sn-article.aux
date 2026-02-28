@@ -2,9 +2,9 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\Newlabel{1}{1}
 \citation{chen2016xgboost}
 \citation{roy2018deep}
-\Newlabel{1}{1}
 \citation{lundberg2017unified}
 \citation{ribeiro2016should}
 \citation{bhattacharyya2011data}
@@ -13,25 +13,27 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contributions}{2}{subsection.1.1}\protected@file@percent }
 \citation{lundberg2017unified}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{3}{section.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework}}{3}{figure.1}\protected@file@percent }
-\newlabel{fig:architecture}{{1}{3}{System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Imbalance-Calibrated SHAP (IC-SHAP)}{3}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Regulatory-Compliant Counterfactuals (RC-CF)}{4}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{4}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Detection Performance \& Out-of-Time Series Stability}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XAI Efficacy: The Impact of IC-SHAP}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Model Performance Comparison generating initial test bounds}}{5}{figure.2}\protected@file@percent }
-\newlabel{fig:model_perf}{{2}{5}{Model Performance Comparison generating initial test bounds}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-Validation Series tracking Strict Out-Of-Time (OOT) concept-drifts}}{5}{figure.3}\protected@file@percent }
-\newlabel{fig:oot_drift}{{3}{5}{Cross-Validation Series tracking Strict Out-Of-Time (OOT) concept-drifts}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Regulatory Counterfactual Optimization}{5}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Feature Importance Analysis exposing distribution equalization}}{6}{figure.4}\protected@file@percent }
-\newlabel{fig:feat_imp}{{4}{6}{Feature Importance Analysis exposing distribution equalization}{figure.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ablation Breakdown}}{6}{table.1}\protected@file@percent }
-\newlabel{tab:ablation}{{1}{6}{Ablation Breakdown}{table.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sample Exiting Boundary Counterfactual Results}}{6}{table.2}\protected@file@percent }
-\newlabel{tab:cfs}{{2}{6}{Sample Exiting Boundary Counterfactual Results}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The Imbalance-Aware Explainable Fraud Detection (IAE-FD) Architecture}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Imbalance-Calibrated SHAP (IC-SHAP)}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework, outlining the decoupling of attribution calculations (IC-SHAP), adversarial scenario definitions (RC-CF), and objective probabilistic tracking (EQA) away from the raw predictive models.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{4}{System Architecture of the Imbalance-Aware Explainable Fraud Detection (IAE-FD) Framework, outlining the decoupling of attribution calculations (IC-SHAP), adversarial scenario definitions (RC-CF), and objective probabilistic tracking (EQA) away from the raw predictive models}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Regulatory-Compliant Counterfactuals (RC-CF)}{4}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Explanation Quality Auditor (EQA)}{5}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Discussions}{5}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Detection Metrics and Out-of-Time (OOT) Drift}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals massive separation. LightGBM provides optimal precision-recall efficiency.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:model_perf}{{2}{6}{Overall Model Performance Aggregates. While AUC-ROC runs consistently high across algorithms ($>0.96$), AUC-PRC reveals massive separation. LightGBM provides optimal precision-recall efficiency}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high structural drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$).}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:oot_drift}{{3}{6}{OOT Fold progression shows structural decay mapping. LightGBM struggled severely during Fold 1 due to high structural drift (AUC $= 0.542$), whereas Logistic Regression completely ignored categorical drift anomalies (AUC $= 0.872$ to $0.936$)}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Decoupling Feature Importance: SHAP vs IC-SHAP vs LIME}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distorted feature priorities: Standard SHAP creates a massive 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$).}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:feat_imp}{{4}{7}{Distorted feature priorities: Standard SHAP creates a massive 29\% attribution gap between generic demographic data ($job\_enc \rightarrow 3.36$) and direct transactional evidence ($amt \rightarrow 2.60$). IC-SHAP geometrically stabilizes these elements pushing them into a functional near-parity ($2.81$ vs $2.70$)}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Ablation Studies on Background Calibration}{8}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ablation Impact on Explanation Signal Smoothing}}{8}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{8}{Ablation Impact on Explanation Signal Smoothing}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Explanation Quality Assessment (Fidelity \& Stability)}{8}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Regulatory Counterfactual Optimization Outputs}{8}{subsection.4.5}\protected@file@percent }
 \bibstyle{unsrt}
 \bibdata{references}
 \bibcite{chen2016xgboost}{1}
@@ -39,5 +41,7 @@
 \bibcite{lundberg2017unified}{3}
 \bibcite{ribeiro2016should}{4}
 \bibcite{bhattacharyya2011data}{5}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
-\gdef \@abspage@last{7}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Empirical Output: RC-CF Escaping Probability Confidence Rings}}{9}{table.2}\protected@file@percent }
+\newlabel{tab:cfs}{{2}{9}{Empirical Output: RC-CF Escaping Probability Confidence Rings}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
+\gdef \@abspage@last{9}
