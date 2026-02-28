@@ -1,0 +1,93 @@
+[LOG] LIME package available
+================================================================================
+XAI FRAUD DETECTION RESEARCH FRAMEWORK - STARTING
+================================================================================
+[LOG] Random seed: 42
+[LOG] Timestamp: 2026-02-28T13:50:45.567362
+[LOG] Configuration loaded
+  - N_FOLDS: 5
+  - N_COUNTERFACTUAL_SAMPLES: 50
+  - N_EXPLANATION_SAMPLES: 200
+
+================================================================================
+PHASE 1: DATA PREPROCESSING
+================================================================================
+
+================================================================================
+PHASE 2: MODEL TRAINING
+================================================================================
+
+================================================================================
+PHASE 3: IC-SHAP IMPLEMENTATION
+================================================================================
+
+================================================================================
+PHASE 4: LIME BASELINE
+================================================================================
+
+================================================================================
+PHASE 5: COUNTERFACTUAL GENERATION
+================================================================================
+
+================================================================================
+PHASE 6: XAI QUALITY AUDIT
+================================================================================
+
+================================================================================
+STARTING COMPLETE EXPERIMENT
+================================================================================
+[LOG] DataPreprocessor initialized
+
+[LOG] Loading data from: fraudTest.csv
+[LOG] Data loaded successfully
+  - Shape: 555,719 rows x 23 columns
+  - Fraud rate: 0.3860%
+  - Fraud count: 2,145
+  - Legitimate count: 553,574
+
+[LOG] Engineering features...
+  - Extracting temporal features...
+  - Computing geographic features...
+  - Transforming amount features...
+  - Computing demographic features...
+  - One-hot encoding categories...
+[LOG] Feature engineering complete. Total columns: 50
+
+[IMPORTANT] Splitting data BEFORE target encoding to prevent leakage
+  Train: 401,506 (fraud: 1,550)
+  Val: 70,855 (fraud: 273)
+  Test: 83,358 (fraud: 322)
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 478 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 401,506
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 70,855
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 83,358
+
+[LOG] Training all models with class weight: 258.04
+  - Training samples: 401,506
+  - Validation samples: 70,855
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Did not meet early stopping. Best iteration is:
+[200]	valid_0's binary_logloss: 0.0100961
+  - LightGBM training complete
+[LOG] Training Random Forest...

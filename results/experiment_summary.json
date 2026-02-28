@@ -1,0 +1,64 @@
+{
+  "dataset": {
+    "name": "Synthetic Credit Card Transaction Data (Kaggle)",
+    "n_samples": 555719,
+    "n_features": 27,
+    "fraud_rate": 0.0038598644278853163,
+    "imbalance_ratio": 258.07645687645686,
+    "target_encoding": "Computed on training folds only (no leakage)"
+  },
+  "model_performance": {
+    "best_model": "random_forest",
+    "best_auc_roc": 0.9896605685358651,
+    "cv_auc_roc_mean": 0.8453523461881677,
+    "cv_auc_roc_std": 0.1249401311981757
+  },
+  "xai_quality": {
+    "fidelity": 0.9999999999999699,
+    "stability": 0.9272727272727274,
+    "comprehensibility": 16,
+    "fidelity_met": true,
+    "stability_met": true,
+    "ic_shap_fidelity": 0.9660972415435359,
+    "ic_shap_stability": 0.8545454545454547
+  },
+  "counterfactuals": {
+    "success_rate": 100.0,
+    "avg_changes": 14.64,
+    "n_successful": 50,
+    "n_total": 50,
+    "confidence_breakdown": {
+      "high": 38,
+      "medium": 3,
+      "low": 9
+    }
+  },
+  "comprehensibility_comparison": {
+    "standard_shap": 16,
+    "ic_shap": 16,
+    "improvement": 0.0
+  },
+  "feature_importance": {
+    "standard_shap_top5": [
+      "job_enc",
+      "amt",
+      "merchant_enc",
+      "hour_cos",
+      "hour"
+    ],
+    "ic_shap_top5": [
+      "job_enc",
+      "amt",
+      "merchant_enc",
+      "hour_cos",
+      "hour"
+    ],
+    "lime_top5": [
+      "cat_gas_transport",
+      "job_enc",
+      "cat_grocery_pos",
+      "amt",
+      "merchant_enc"
+    ]
+  }
+}
