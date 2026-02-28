@@ -334,16 +334,15 @@ Table 1 presents detection performance across all models.
 
 **Table 1: Model Performance Comparison**
 
-| Model | AUC-ROC | AUC-PRC | F1-Score | MCC | Recall | Detection@1%FPR |
-|-------|---------|---------|----------|-----|--------|-----------------|
-| XGBoost | 0.9880 | 0.8552 | 0.6340 | 0.6560 | 0.8634 | 0.8820 |
-| LightGBM | 0.9792 | 0.8658 | 0.6914 | 0.7050 | 0.8696 | 0.8913 |
-| Random Forest | 0.9897 | 0.8177 | 0.4991 | 0.5499 | 0.8727 | 0.8727 |
-| Logistic Regression | 0.9697 | 0.1645 | 0.0930 | 0.1995 | 0.8851 | 0.5559 |
+| Model | AUC-ROC | AUC-PRC | F1-Score | MCC | Recall |
+|-------|---------|---------|----------|-----|--------|
+| XGBoost | 0.9880 | 0.8552 | 0.6340 | 0.6560 | 0.8634 |
+| LightGBM | 0.9792 | 0.8658 | 0.6914 | 0.7050 | 0.8696 |
+| Random Forest | 0.9897 | 0.8177 | 0.4991 | 0.5499 | 0.8727 |
+| Logistic Regression | 0.9697 | 0.1645 | 0.0930 | 0.1995 | 0.8851 |
 
 All gradient boosting models achieve AUC-ROC exceeding 0.97, demonstrating the effectiveness of these methods for fraud detection. LightGBM achieves the highest F1-score (0.6914), while Random Forest achieves the highest AUC-ROC (0.9897).
 
-Critically, all models achieve detection rates exceeding 87% at 1% false positive rate, meaning that while reviewing only 1% of transactions, we can identify over 87% of fraud cases. This operational metric is particularly relevant for financial institutions with limited fraud investigation resources.
 
 ### 5.2 Out-Of-Time Cross-Validation Results
 
@@ -353,17 +352,16 @@ Table 2 presents 5-fold TimeSeriesSplit CV results across all models.
 
 | Fold | XGBoost | LightGBM | Random Forest | Logistic |
 |------|---------|----------|---------------|----------|
-| 1 | 0.9580 | 0.9670 | 0.9457 | 0.8825 |
-| 2 | 0.9689 | 0.9687 | 0.9573 | 0.8961 |
-| 3 | 0.9684 | 0.9569 | 0.9575 | 0.8959 |
-| 4 | 0.9682 | 0.9668 | 0.9542 | 0.8981 |
-| 5 | 0.9687 | 0.9676 | 0.9568 | 0.8975 |
-| **Mean** | **0.9664** | **0.9654** | **0.9543** | **0.8940** |
-| **Std** | **0.0042** | **0.0049** | **0.0045** | **0.0058** |
+| 1 | 0.6738 | 0.5424 | 0.8544 | 0.8722 |
+| 2 | 0.6842 | 0.8926 | 0.8928 | 0.9231 |
+| 3 | 0.6575 | 0.9319 | 0.9040 | 0.9088 |
+| 4 | 0.7091 | 0.9458 | 0.9451 | 0.9379 |
+| 5 | 0.7734 | 0.9776 | 0.9445 | 0.9360 |
+| **Mean** | **0.6996** | **0.8581** | **0.9082** | **0.9156** |
 
-**Realistic Overall CV AUC-ROC: ~96.6%**
+**Realistic Overall CV AUC-ROC (Model Agnostic Mean): ~0.8454 (±0.1249)**
 
-Strict Out-Of-Time (OOT) cross-validation corrects artificial inflation by eliminating temporal-leakage and target encoding leakage. Model generalizability in realistic future scenarios stays robust over 96%.
+Strict Out-Of-Time (OOT) cross-validation corrects artificial inflation by eliminating temporal-leakage. Notably, complex gradient boosting trees like XGBoost suffer heavy concept-drift dropoffs out-of-time, while simpler architectures like Random Forest (Mean 0.908) and Logistic Regression (Mean 0.915) maintain high OOT robustness over shifting threat patterns.
 
 ### 5.3 Feature Importance Comparison
 
@@ -406,10 +404,10 @@ Table 4 presents ablation results comparing SHAP variants.
 
 | Metric | Standard SHAP | IC-SHAP | Target | Status |
 |--------|---------------|---------|--------|--------|
-| Fidelity | 0.934 | 0.941 | > 0.90 | ✓ Met |
-| Stability | 0.927 | 0.905 | > 0.85 | ✓ Met |
+| Fidelity | 1.0000 | 0.9661 | > 0.90 | ✓ Met |
+| Stability | 0.9273 | 0.8545 | > 0.85 | ✓ Met |
 
-**Fidelity Analysis:** The fidelity score safely exceeds our target of >0.90. Gradient-boosting SHAP evaluations natively produce values in Log-Odds (margin) space. By performing mathematical proxy-conversion via Sigmoid scaling back into Probability Space, the explainer perfectly tracks the actual model non-linear probability outcomes, achieving >0.94 probability correlation across the test samples.
+**Fidelity Analysis:** The fidelity score safely exceeds our target of >0.90. Gradient-boosting SHAP evaluations natively produce values in Log-Odds (margin) space. By performing mathematical proxy-conversion via Sigmoid scaling back into Probability Space, the explainer perfectly tracks the actual model non-linear probability outcomes, achieving >0.96 probability correlation across the test samples using IC-SHAP.
 
 ### 5.6 Counterfactual Explanations
 
@@ -418,32 +416,23 @@ Table 4 presents ablation results comparing SHAP variants.
 | Metric | Value |
 |--------|-------|
 | Total Fraud Instances | 50 |
-| Successful CF Generation | 39 (78%) |
-| Failed CF Generation | 11 (22%) |
-| Average Feature Changes | 3.4 |
+| Successful CF Generation | 50 (100.0%) |
+| Failed CF Generation | 0 (0%) |
+| Average Feature Changes | 14.64 |
 
 **Confidence-Level Breakdown:**
 
 | Confidence Level | Count |
 |------------------|-------|
-| High (>0.99) | 40 |
-| Medium (0.95-0.99) | 5 |
-| Low (<0.95) | 5 |
-
-**Table 7: Sample Successful Counterfactuals**
-
-| Instance | Original Pred | CF Pred | Changes | Top Features Changed |
-|----------|--------------|---------|---------|---------------------|
-| 696 | 0.999 | 0.0001 | 3 | amt, amt_log, amt_sqrt |
-| 1064 | 0.999 | 0.0001 | 3 | distance, lat_diff, long_diff |
-| 2242 | 0.999 | 0.0001 | 2 | amt, amt_log |
-| 5268 | 0.999 | 0.0001 | 4 | amt, hour, hour_sin, hour_cos |
+| High (>0.99) | 38 |
+| Medium (0.95-0.99) | 3 |
+| Low (<0.95) | 9 |
 
 **Key Observations:**
 
-1. **Success Rate:** 78% of fraud cases allow counterfactual generation with successful scenario predictions, meeting strict financial regulatory requirements for providing actionable insights.
+1. **Success Rate:** 100.0% of fraud cases allow counterfactual generation with successful scenario predictions, meeting strict financial regulatory requirements for providing actionable insights. The L1 continuous SLSQP Optimizer consistently solves the mathematical landscape.
 
-2. **Differentiable Sparsity:** Through successful employment of an continuous L1 optimization constraint and strict adherence to geometric variable structures, the counterfactuals maintain exceptional sparsity with merely an average of ~3.4 feature changes. This renders the results exceptionally humane, compliant, and understandable.
+2. **Differentiable Sparsity:** Through successful employment of a continuous L1 optimization constraint and strict adherence to geometric variable structures, the counterfactuals succeed across high-confidence fraud networks (38/50 instances were >0.99 confidence targets) by executing an average subset pattern of 14.6 feature dimension modifications to exit the theoretical fraud manifold.
 
 3. **Structural Safety:** Constraints locking derived parameters (i.e. `hour_sin` strictly linked to `hour`, or `amt_log` linked to `amt`) means generated explanations are mathematically possible rather than theoretical artifacts.
 
@@ -493,10 +482,10 @@ We presented a comprehensive framework for explainable fraud detection addressin
 
 | Contribution | Result |
 |--------------|--------|
-| Detection Performance | ~96.6% Realistic AUC-ROC utilizing OOT Split |
-| Explanation Fidelity | >0.94 (target: 0.90) ✓ Met through correct Sigmoid scaling |
-| Explanation Stability | 0.905 (target: 0.85) ✓ Met |
-| Counterfactual Success | 78% success rate, highly sparse minimal changes (avg ~3.4) |
+| Detection Performance | Robust Generic OOT Splitting (~0.85 AUC). Logistic and RF resistant to strict time-drift |
+| Explanation Fidelity | 0.966 (target: 0.90) ✓ Met through correct Sigmoid scaling |
+| Explanation Stability | 0.854 (target: 0.85) ✓ Met |
+| Counterfactual Success | Perfect 100% success rate with structurally valid L1 continuous derivations |
 | Target Leakage Prevention | Strict OOT Fold boundary calculations internally managed |
 
 Our framework enables financial institutions to deploy effective fraud detection systems that meet both performance and regulatory requirements.

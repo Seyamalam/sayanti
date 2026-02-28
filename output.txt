@@ -3,7 +3,7 @@
 XAI FRAUD DETECTION RESEARCH FRAMEWORK - STARTING
 ================================================================================
 [LOG] Random seed: 42
-[LOG] Timestamp: 2026-02-28T13:50:45.567362
+[LOG] Timestamp: 2026-02-28T13:51:29.546053
 [LOG] Configuration loaded
   - N_FOLDS: 5
   - N_COUNTERFACTUAL_SAMPLES: 50
@@ -88,6 +88,380 @@ STARTING COMPLETE EXPERIMENT
 [LOG] Training LightGBM...
 Training until validation scores don't improve for 30 rounds
 Did not meet early stopping. Best iteration is:
-[200]	valid_0's binary_logloss: 0.0100961
+[200]   valid_0's binary_logloss: 0.0100961
   - LightGBM training complete
 [LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.9880, Recall=0.8634
+  - lightgbm: AUC-ROC=0.9792, Recall=0.8696
+  - random_forest: AUC-ROC=0.9897, Recall=0.8727
+  - logistic: AUC-ROC=0.9697, Recall=0.8851
+
+[RESULT] Model Performance:
+        model  auc_roc  auc_prc  f1_score   recall
+      xgboost 0.988005 0.855207  0.633979 0.863354
+     lightgbm 0.979190 0.865784  0.691358 0.869565
+random_forest 0.989661 0.817720  0.499112 0.872671
+     logistic 0.969725 0.164535  0.093046 0.885093
+
+[LOG] Running Out-of-Time CV evaluation...
+[LOG] DataPreprocessor initialized
+
+[LOG] Running 5-fold TimeSeriesSplit cross-validation...
+
+[LOG] Fold 1/5
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 476 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 78,730
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 13,894
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 92,619
+
+[LOG] Training all models with class weight: 239.76
+  - Training samples: 78,730
+  - Validation samples: 13,894
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Early stopping, best iteration is:
+[156]   valid_0's binary_logloss: 0.0130125
+  - LightGBM training complete
+[LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.6738, Recall=0.0219
+  - lightgbm: AUC-ROC=0.5424, Recall=0.0219
+  - random_forest: AUC-ROC=0.8544, Recall=0.0219
+  - logistic: AUC-ROC=0.8722, Recall=0.3285
+
+[LOG] Fold 2/5
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 476 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 157,456
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 27,787
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 92,619
+
+[LOG] Training all models with class weight: 231.58
+  - Training samples: 157,456
+  - Validation samples: 27,787
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Did not meet early stopping. Best iteration is:
+[200]   valid_0's binary_logloss: 0.0137876
+  - LightGBM training complete
+[LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.6842, Recall=0.0776
+  - lightgbm: AUC-ROC=0.8926, Recall=0.0776
+  - random_forest: AUC-ROC=0.8928, Recall=0.0776
+  - logistic: AUC-ROC=0.9231, Recall=0.6353
+
+[LOG] Fold 3/5
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 478 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 236,182
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 41,680
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 92,619
+
+[LOG] Training all models with class weight: 226.54
+  - Training samples: 236,182
+  - Validation samples: 41,680
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Did not meet early stopping. Best iteration is:
+[200]   valid_0's binary_logloss: 0.0106527
+  - LightGBM training complete
+[LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.6575, Recall=0.1155
+  - lightgbm: AUC-ROC=0.9319, Recall=0.1278
+  - random_forest: AUC-ROC=0.9040, Recall=0.1093
+  - logistic: AUC-ROC=0.9088, Recall=0.5918
+
+[LOG] Fold 4/5
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 478 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 314,908
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 55,573
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 92,619
+
+[LOG] Training all models with class weight: 216.18
+  - Training samples: 314,908
+  - Validation samples: 55,573
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Did not meet early stopping. Best iteration is:
+[200]   valid_0's binary_logloss: 0.0117614
+  - LightGBM training complete
+[LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.7091, Recall=0.3037
+  - lightgbm: AUC-ROC=0.9458, Recall=0.3067
+  - random_forest: AUC-ROC=0.9451, Recall=0.2914
+  - logistic: AUC-ROC=0.9379, Recall=0.7362
+
+[LOG] Fold 5/5
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 478 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 393,635
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 69,465
+
+[LOG] Fitting preprocessor and transforming data...
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 92,619
+
+[LOG] Training all models with class weight: 226.93
+  - Training samples: 393,635
+  - Validation samples: 69,465
+
+[LOG] Training XGBoost...
+  - XGBoost training complete
+[LOG] Training LightGBM...
+Training until validation scores don't improve for 30 rounds
+Did not meet early stopping. Best iteration is:
+[200]   valid_0's binary_logloss: 0.0122604
+  - LightGBM training complete
+[LOG] Training Random Forest...
+  - Random Forest training complete
+[LOG] Training Logistic Regression...
+  - Logistic Regression training complete
+
+[LOG] All models trained successfully
+
+[LOG] Evaluating models...
+  - xgboost: AUC-ROC=0.7734, Recall=0.3805
+  - lightgbm: AUC-ROC=0.9776, Recall=0.3805
+  - random_forest: AUC-ROC=0.9445, Recall=0.3363
+  - logistic: AUC-ROC=0.9360, Recall=0.7168
+
+[RESULT] CV AUC-ROC: 0.8454 (±0.1249)
+
+[LOG] Fitting preprocessor and transforming data...
+  [IMPORTANT] Computing target encodings on TRAINING data only (no leakage)
+    - merchant: 693 unique values encoded
+    - job: 478 unique values encoded
+  - Applying target encodings...
+[LOG] Preprocessing complete:
+  - Features: 27
+  - Samples: 555,719
+
+================================================================================
+PHASE 7: SHAP ANALYSIS
+================================================================================
+[RESULT] Standard SHAP top feature: job_enc
+[LOG] Initializing IC-SHAP...
+[LOG] IC-SHAP calibration weights:
+  - w_legit = 0.500000 (for majority background)
+  - w_fraud = 0.500000 (for minority background)
+  - Legitimate samples: 399,956
+  - Fraud samples: 1,550
+
+[LOG] Computing IC-SHAP explanations...
+  - Creating stratified background samples...
+    - Background legit: 100
+    - Background fraud: 100
+  - Computing class-conditional SHAP values...
+    - TreeExplainer successful
+  - Applying weighted aggregation...
+[LOG] IC-SHAP complete. Top feature: job_enc
+[RESULT] IC-SHAP top feature: job_enc
+[LOG] Running LIME analysis...
+  - Creating LIME explainer with 401,506 training samples
+  - Explaining 50 samples...
+    - Progress: 0/50
+[LOG] LIME complete. Top feature: cat_gas_transport
+
+[LOG] Running ablation study...
+  [1/4] Standard SHAP...
+  [2/4] Stratified background only...
+  [3/4] Calibrated weights only...
+  [4/4] Full IC-SHAP...
+[LOG] Initializing IC-SHAP...
+[LOG] IC-SHAP calibration weights:
+  - w_legit = 0.500000 (for majority background)
+  - w_fraud = 0.500000 (for minority background)
+  - Legitimate samples: 399,956
+  - Fraud samples: 1,550
+
+[LOG] Computing IC-SHAP explanations...
+  - Creating stratified background samples...
+    - Background legit: 100
+    - Background fraud: 100
+  - Computing class-conditional SHAP values...
+    - TreeExplainer successful
+  - Applying weighted aggregation...
+[LOG] IC-SHAP complete. Top feature: job_enc
+[LOG] ExplanationQualityAuditor initialized
+
+[LOG] Auditing Standard SHAP...
+[LOG] Evaluating fidelity...
+  - Fidelity: 1.0000
+[LOG] Evaluating stability...
+  - Stability: 0.9273
+  - Comprehensibility: 16 features for 95% variance
+[LOG] Evaluating fidelity...
+  - Fidelity: 0.9661
+
+[LOG] Auditing IC-SHAP...
+[LOG] Evaluating fidelity...
+  - Fidelity: 1.0000
+[LOG] Evaluating stability...
+  - Stability: 0.8545
+  - Comprehensibility: 16 features for 95% variance
+  - Comprehensibility: 16 features for 95% variance
+  - Comprehensibility: 16 features for 95% variance
+
+[RESULT] Comprehensibility: Standard=16, IC-SHAP=16
+[LOG] CounterfactualGenerator initialized
+  - Immutable features: ['age', 'gender_enc']
+  - Immutable indices: [9, 13]
+
+[LOG] Generating counterfactuals for 50 fraud instances...
+  - Progress: 0/50
+  - Progress: 10/50
+  - Progress: 20/50
+  - Progress: 30/50
+  - Progress: 40/50
+
+[LOG] Counterfactual generation complete:
+  - Success rate: 100.0% (50/50)
+  - Average feature changes: 14.64
+  - Confidence breakdown:
+    - High (>0.99): 38
+    - Medium (0.95-0.99): 3
+    - Low (<0.95): 9
+
+[LOG] Generating visualizations...
+[LOG] Saved: results/all_results.png
+
+================================================================================
+EXPERIMENT COMPLETE
+================================================================================
+
+Results saved to: results/
+  - ablation_study.csv
+  - all_results.png
+  - counterfactuals.csv
+  - cross_validation.csv
+  - experiment_summary.json
+  - ic_shap_importance.csv
+  - lime_importance.csv
+  - model_performance.csv
+  - standard_shap_importance.csv
+  - xai_quality.csv
