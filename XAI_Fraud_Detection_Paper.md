@@ -317,6 +317,13 @@ All models use class weights or scale_pos_weight to address imbalance during tra
 - Explanation sample: 200 test instances
 - TreeExplainer for gradient boosting models
 
+### 4.6 Hardware Environment
+
+All experiments, model training, and explanation generation processes were executed within an isolated 64-bit virtualized environment configured with the following specifications:
+- **Processor:** Virtual machine accelerated by a host AMD EPYC 7763 64-Core Processor (x86_64 architecture, Zen 3).
+- **Compute Allocation:** 4 virtualized CPU cores (vCPUs) dynamically provisioned through Microsoft Hypervisor via GitHub Workspaces/Codespaces.
+- **Cache Topology:** 64 KiB L1, 1 MiB L2 per core, backed by a robust 32 MiB L3 cache structure optimized for computationally heavy tree-building and Shapley marginal contribution calculations.
+
 ---
 
 ## 5. Results and Analysis
