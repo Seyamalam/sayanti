@@ -19,7 +19,7 @@ from datetime import datetime
 from typing import List, Dict, Tuple, Optional
 from scipy.optimize import minimize
 
-from sklearn.model_selection import StratifiedKFold, train_test_split
+from sklearn.model_selection import TimeSeriesSplit, train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import (
     roc_auc_score, average_precision_score, f1_score,
@@ -302,8 +302,8 @@ class ImbalanceCalibratedSHAP:
         self.X_fraud = X_train[y_train == 1]
         
         n_legit, n_fraud = len(self.X_legit), len(self.X_fraud)
-        self.w_legit = n_fraud / (n_legit + n_fraud)
-        self.w_fraud = n_legit / (n_legit + n_fraud)
+        self.w_legit = 0.5
+        self.w_fraud = 0.5
         
         print(f"[LOG] IC-SHAP calibration weights:")
         print(f"  - w_legit = {self.w_legit:.6f} (for majority background)")
@@ -424,19 +424,34 @@ class CounterfactualGenerator:
     
     def generate(self, x_original, threshold=0.5, max_iterations=500, n_candidates=5):
         bounds = [(None, None) for _ in range(len(x_original))]
+        
+        # Helper to get feature index
+        def idx(name):
+            return self.feature_names.index(name)
+            
         constraints = [
             {'type': 'eq', 'fun': lambda x, i=i: x[i] - x_original[i]}
             for i in self.immutable_indices
         ]
         
+        # Structural constraints to prevent impossible counterfactuals
+        if 'hour' in self.feature_names and 'hour_sin' in self.feature_names and 'hour_cos' in self.feature_names:
+            constraints.append({'type': 'eq', 'fun': lambda x: x[idx('hour_sin')] - np.sin(2 * np.pi * x[idx('hour')] / 24)})
+            constraints.append({'type': 'eq', 'fun': lambda x: x[idx('hour_cos')] - np.cos(2 * np.pi * x[idx('hour')] / 24)})
+            
+        if 'amt' in self.feature_names and 'amt_log' in self.feature_names:
+            constraints.append({'type': 'eq', 'fun': lambda x: x[idx('amt_log')] - np.log1p(max(0, x[idx('amt')]))})
+        
         def objective(x_cf):
             try:
-                pred = self.model.predict_proba(x_cf.reshape(1, -1))[0, 1]
+                pred_margin = self.model.predict(x_cf.reshape(1, -1), output_margin=True)[0]
+                pred = 1 / (1 + np.exp(-pred_margin))
             except:
                 pred = 0.5
             pred_loss = max(0, pred - (1 - threshold))
             dist_loss = np.linalg.norm(x_cf - x_original)
-            sparse_loss = np.sum(np.abs(x_cf - x_original) > Config.EPSILON_FEATURE_CHANGE)
+            # Fix: L1 norm instead of step function so optimizer sees the gradient
+            sparse_loss = np.sum(np.abs(x_cf - x_original))
             return 10 * pred_loss + 0.1 * dist_loss + 0.5 * sparse_loss
         
         best_result = None
@@ -569,9 +584,12 @@ class ExplanationQualityAuditor:
     
     def evaluate_fidelity(self, shap_values, base_value, X):
         print("[LOG] Evaluating fidelity...")
-        reconstructed = base_value + shap_values.sum(axis=1)
-        actual = self.model.predict_proba(X)[:, 1]
-        correlation = np.corrcoef(reconstructed, actual)[0, 1]
+        reconstructed_margin = base_value + shap_values.sum(axis=1)
+        # Fix: Need to convert sum of SHAP values (log-odds) back to probability space 
+        # using sigmoid function before computing correlation
+        reconstructed_prob = 1 / (1 + np.exp(-np.clip(reconstructed_margin, -15, 15)))
+        actual_prob = self.model.predict_proba(X)[:, 1]
+        correlation = np.corrcoef(reconstructed_prob, actual_prob)[0, 1]
         fidelity = float(correlation) if not np.isnan(correlation) else 0.0
         print(f"  - Fidelity: {fidelity:.4f}")
         return fidelity
@@ -640,21 +658,30 @@ class ExplanationQualityAuditor:
 # CROSS-VALIDATION
 # =============================================================================
 
-def run_cross_validation(X, y, feature_names, n_splits=Config.N_FOLDS):
-    print(f"\n[LOG] Running {n_splits}-fold cross-validation...")
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=RANDOM_STATE)
+def run_cross_validation(df, preprocessor, n_splits=Config.N_FOLDS):
+    print(f"\n[LOG] Running {n_splits}-fold TimeSeriesSplit cross-validation...")
+    # Fix: Sort chronologically to prevent temporal data leakage 
+    if 'trans_date_trans_time' in df.columns:
+        df = df.sort_values('trans_date_trans_time').reset_index(drop=True)
+        
+    tscv = TimeSeriesSplit(n_splits=n_splits)
     results = []
     
-    for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
+    for fold, (train_idx, test_idx) in enumerate(tscv.split(df)):
         print(f"\n[LOG] Fold {fold + 1}/{n_splits}")
         
-        X_train_full, X_test = X[train_idx], X[test_idx]
-        y_train_full, y_test = y[train_idx], y[test_idx]
+        train_df_full = df.iloc[train_idx]
+        test_df = df.iloc[test_idx]
         
-        X_train, X_val, y_train, y_val = train_test_split(
-            X_train_full, y_train_full, test_size=Config.VAL_SIZE,
-            stratify=y_train_full, random_state=RANDOM_STATE
+        train_df, val_df = train_test_split(
+            train_df_full, test_size=Config.VAL_SIZE,
+            stratify=train_df_full['is_fraud'], random_state=RANDOM_STATE
         )
+        
+        # Fit-transform independently over time-splits to prevent target leakage
+        X_train, y_train, feature_names = preprocessor.fit_transform(train_df, fit_encodings=True)
+        X_val, y_val, _ = preprocessor.fit_transform(val_df, fit_encodings=False)
+        X_test, y_test, _ = preprocessor.fit_transform(test_df, fit_encodings=False)
         
         trainer = ModelTrainer()
         trainer.train_all(X_train, y_train, X_val, y_val)
@@ -858,11 +885,13 @@ def run_complete_experiment(data_path, output_dir='results'):
     print(model_results[['model', 'auc_roc', 'auc_prc', 'f1_score', 'recall']].to_string(index=False))
     
     # Cross-validation
-    print("\n[LOG] Recombining for cross-validation...")
-    X_full, y_full, _ = preprocessor.fit_transform(df, fit_encodings=True)
-    cv_results = run_cross_validation(X_full, y_full, feature_names)
+    print("\n[LOG] Running Out-of-Time CV evaluation...")
+    cv_results = run_cross_validation(df, DataPreprocessor(), n_splits=Config.N_FOLDS)
     cv_results.to_csv(f'{output_dir}/cross_validation.csv', index=False)
     print(f"\n[RESULT] CV AUC-ROC: {cv_results['auc_roc'].mean():.4f} (±{cv_results['auc_roc'].std():.4f})")
+    
+    # Needs entire transformed arrays for downstream XAI evaluation steps
+    X_full, y_full, _ = preprocessor.fit_transform(df, fit_encodings=True)
     
     # Standard SHAP
     print("\n" + "="*80)
